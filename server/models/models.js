@@ -23,6 +23,7 @@ const Citizen = sequelize.define('citizen', {
 
 const Mail = sequelize.define('mail', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    dateToComplete: {type: DataTypes.DATE},
     dateComplete: {type: DataTypes.DATE},
     author: {type: DataTypes.STRING},
     address: {type: DataTypes.STRING},
