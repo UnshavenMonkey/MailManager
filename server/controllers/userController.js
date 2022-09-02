@@ -47,6 +47,11 @@ class UserController {
         }
         res.json(id);
     }
+
+    async getUsers(req, res) {
+        const users = await User.findAll()
+        return res.json(users);
+    }
 }
 
 module.exports = new UserController();
