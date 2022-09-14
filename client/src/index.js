@@ -1,7 +1,11 @@
 import React from "react";
-import {App} from './App';
 import { createRoot } from 'react-dom/client';
+import { store } from './store';
+import { Provider } from 'react-redux';
+import {Root} from "./components/root/Root";
 
 createRoot(document.getElementById('root')).render(
-    <App />,
+    <Provider store={store}>
+        <Root />,
+    </Provider>
 );

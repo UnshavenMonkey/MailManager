@@ -1,14 +1,6 @@
 const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt');
 const {User} = require('../models/models');
-const jwt = require('jsonwebtoken');
-
-const generateJwt = (id, email, role) => {
-    return jwt.sign(
-        {id, email, role},
-        process.env.SECRET_KEY,
-        {expiresIn: '24h'})
-}
 
 class UserController {
     async registration(req, res, next) {
@@ -22,8 +14,7 @@ class UserController {
         }
         const hashPassword = await bcrypt.hash(password, 5);
         const user = await User.create({email, role, password: hashPassword});
-        const token = generateJwt(user.id, user.email, user.role);
-        return res.json({token});
+        return res.json({user});
     }
 
     async login(req, res) {
@@ -36,8 +27,8 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        const token = generateJwt(user.id, user.email, user.role)
-        return res.json({token})
+        const s = req.session
+        return res.json({user, s})
     }
 
     async check(req, res, next) {
