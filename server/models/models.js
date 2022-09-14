@@ -37,8 +37,10 @@ const ConnectSession = sequelize.define('ConnectSession', {
         primaryKey: true
     },
     expires: DataTypes.DATE,
-    createdAt: {type: DataTypes.BOOLEAN, allowNull: true},
-    updatedAt: {type: DataTypes.BOOLEAN, allowNull: true},
+    // createdAt: {
+    //     type: DataTypes.DATE,
+    //     allowNull: true},
+    // updatedAt: {type: DataTypes.DATE, allowNull: true},
 })
 
 Citizen.hasMany(Mail);

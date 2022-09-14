@@ -4,7 +4,7 @@ export const PATHS = {
     REGISTRATION: '/registration'
 }
 
-const PATHS_INFO = {
-    [PATHS.INDEX]: { to: PATHS.INDEX, name: 'Главная' },
-}
+// const PATHS_INFO = {
+//     [PATHS.INDEX]: { to: PATHS.INDEX, name: 'Главная' },
+// }
 

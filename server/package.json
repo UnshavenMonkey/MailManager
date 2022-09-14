@@ -10,13 +10,14 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
     "cors": "2.8.5",
     "dotenv": "16.0.1",
     "express": "4.18.1",
     "express-session": "^1.17.3",
     "pg": "8.7.3",
     "pg-hstore": "2.3.4",
-    "sequelize": "6.21.3",
+    "sequelize": "5.22.5",
     "sequelstore-connect": "1.1.5",
     "winston": "^2.4.1"
   },

@@ -17,7 +17,7 @@ class UserController {
         return res.json({user});
     }
 
-    async login(req, res) {
+    async login(req, res, next) {
         const {email, password} = req.body
         const user = await User.findOne({where: {email}});
         if (!user) {
@@ -28,7 +28,9 @@ class UserController {
             return next(ApiError.internal('Указан неверный пароль'))
         }
         const s = req.session
-        return res.json({user, s})
+        s.email = user.email
+        console.log(s)
+        return res.json({user})
     }
 
     async check(req, res, next) {
