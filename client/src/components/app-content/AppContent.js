@@ -1,11 +1,11 @@
 import React from 'react';
 import { Content } from 'rsuite';
-import '../styles.css';
+import style from './AppContent.module.scss';
 
 export function AppContent() {
     return (
-        <Content>
-            working
+        <Content className={style.appContent}>
+           hello
         </Content>
     );
 }

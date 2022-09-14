@@ -31,9 +31,19 @@ const Mail = sequelize.define('mail', {
     responsiblePerson: {type: DataTypes.STRING},
 })
 
+const ConnectSession = sequelize.define('ConnectSession', {
+    sid: {
+        type: DataTypes.STRING,
+        primaryKey: true
+    },
+    expires: DataTypes.DATE,
+    createdAt: {type: DataTypes.BOOLEAN, allowNull: true},
+    updatedAt: {type: DataTypes.BOOLEAN, allowNull: true},
+})
+
 Citizen.hasMany(Mail);
 Mail.belongsTo(Citizen);
 
 module.exports = {
-    User, Citizen, Mail
-}
+    User, Citizen, Mail, ConnectSession
+};
