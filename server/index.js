@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config()
 const express = require('express');
 const sequelize = require('./db');
 const cors = require('cors');
@@ -20,6 +20,7 @@ app.use(errorHandler);
 const start = async () => {
     try {
         await sequelize.authenticate();
+        console.log("Привет это база данных");
         await sequelize.sync();
         app.listen(PORT, () => console.log(`server started on port ${PORT}`));
     } catch(error) {

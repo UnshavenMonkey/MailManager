@@ -2,7 +2,6 @@ import React from 'react';
 import {Header, Nav, Navbar} from "rsuite";
 import HomeIcon from '@rsuite/icons/legacy/Home';
 import CogIcon from '@rsuite/icons/legacy/Cog';
-import '../styles.css';
 
 
 export function AppHeader() {
