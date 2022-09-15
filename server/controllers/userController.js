@@ -27,10 +27,10 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        const s = req.session
-        s.email = user.email
-        console.log(s)
+
         return res.json({user})
+
+
     }
 
     async check(req, res, next) {

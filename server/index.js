@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express');
 const session = require('express-session');
-const SequelizeStore = require('sequelstore-connect')(session);
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sequelize = require('./db');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -21,6 +21,9 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, 'static')));
+const myStore = new SequelizeStore({
+    db: sequelize,
+})
 app.use(session({
     key: "userID",
     secret: "subscribe",
@@ -29,10 +32,10 @@ app.use(session({
     cookie: {
         expires: 60 * 60
     },
-    store: new SequelizeStore({
-        database: sequelize,
-        })
+    store: myStore
 }));
+myStore.sync();
+// app.use(session({secret: 'secret key'}))
 app.use('/api', router);
 app.use(cookieParser());
 app.use(errorHandler);
@@ -43,6 +46,7 @@ const start = async () => {
         console.log('Connection has been established successfully.');
         await sequelize.sync();
         app.listen(PORT, () => console.log(`server started on port ${PORT}`));
+        console.log('===============')
     } catch(error) {
         console.log('это ошибка', error);
     }
