@@ -30,7 +30,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: {
-        expires: 60 * 60
+        expires: 60 * 60 * 60
     },
     store: myStore
 }));

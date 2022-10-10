@@ -1,6 +1,7 @@
 const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt');
-const {User} = require('../models/models');
+const {User } = require('../models/models');
+const sequelize = require('../db');
 
 class UserController {
     async registration(req, res, next) {
@@ -29,22 +30,25 @@ class UserController {
         }
 
         return res.json({user})
-
-
     }
 
     async check(req, res, next) {
-        const {id} = req.query;
-        if (!id) {
-            return next(ApiError.badRequest('Не задан id'))
+        const sid = req.sessionID;
+        const session = await sequelize.models.Session.findOne({where: {sid: sid}});
+        if (!session) {
+            return res.json({isAuth: !!session});
         }
-        res.json(id);
+
+        return res.json({isAuth: !!session})
     }
 
-    async getUsers(req, res) {
-        const users = await User.findAll()
-        return res.json(users);
+    async logout(req, res, next) {
+        const sid = req.sessionID;
+        await sequelize.models.Session.destroy({where: {sid: sid}});
+
+        return res.json({message: 'Выход осуществлен'})
     }
+
 }
 
 module.exports = new UserController();
