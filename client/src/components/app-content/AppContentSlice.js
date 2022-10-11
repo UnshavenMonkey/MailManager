@@ -22,7 +22,6 @@ export const appContentSlice = createSlice({
     extraReducers: {
         [getAuthStatus.fulfilled]: (state, action) => {
             state.isAuth = action.payload;
-            console.log(action.payload)
         },
     },
 });

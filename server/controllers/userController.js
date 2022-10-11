@@ -14,7 +14,7 @@ class UserController {
             return next(ApiError.badRequest("Пользователь с таким email уже существует"))
         }
         const hashPassword = await bcrypt.hash(password, 5);
-        const user = await User.create({email, role, password: hashPassword});
+        const user = await User.create({email, role, password: hashPassword });
         return res.json({user});
     }
 
@@ -29,6 +29,8 @@ class UserController {
             return next(ApiError.internal('Указан неверный пароль'))
         }
 
+        req.session.user = user;
+
         return res.json({user})
     }
 
@@ -36,7 +38,7 @@ class UserController {
         const sid = req.sessionID;
         const session = await sequelize.models.Session.findOne({where: {sid: sid}});
         if (!session) {
-            return res.json({isAuth: !!session});
+            return next(ApiError.unauthorized('Пользователь не авторизован'));
         }
 
         return res.json({isAuth: !!session})
@@ -47,6 +49,16 @@ class UserController {
         await sequelize.models.Session.destroy({where: {sid: sid}});
 
         return res.json({message: 'Выход осуществлен'})
+    }
+
+    async currentUser(req, res, next) {
+        const session = req.session;
+        if (!session.user) {
+            return next(ApiError.unauthorized('Пользователь не авторизован'));
+        }
+        const user = await User.findOne({where: {id: session.user.id}});
+
+        return res.json({user})
     }
 
 }

@@ -15,15 +15,10 @@ export function AppContent() {
         dispatch(getAuthStatus())
     };
 
-    console.log(isAuth);
-
 
     return (
         <Content className={style.appContent}>
            hello
-            <ButtonToolbar>
-                <Button appearance="primary" type="submit" onClick={handleIsAuth}>Submit</Button>
-            </ButtonToolbar>
         </Content>
     );
 }

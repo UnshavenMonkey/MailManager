@@ -30,12 +30,11 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: {
-        expires: 60 * 60 * 60
+        expires: 1000 * 60 * 60
     },
     store: myStore
 }));
 myStore.sync();
-// app.use(session({secret: 'secret key'}))
 app.use('/api', router);
 app.use(cookieParser());
 app.use(errorHandler);
