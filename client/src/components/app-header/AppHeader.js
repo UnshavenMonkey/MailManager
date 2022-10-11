@@ -1,10 +1,10 @@
 import React from 'react';
 import {Header, Nav, Navbar} from "rsuite";
 import HomeIcon from '@rsuite/icons/legacy/Home';
-import CogIcon from '@rsuite/icons/legacy/Cog';
 import {useDispatch} from "react-redux";
 import {logout} from "./AppHeaderSlice";
 import {getCurrentUser} from "../app/AppSlice";
+import ExitIcon from '@rsuite/icons/Exit';
 
 
 export function AppHeader() {
@@ -25,7 +25,7 @@ export function AppHeader() {
                     <Nav.Item>Корреспонденция</Nav.Item>
                 </Nav>
                 <Nav pullRight>
-                    <Nav.Item onClick={handleLogout} icon={<CogIcon />}>Выйти</Nav.Item>
+                    <Nav.Item onClick={handleLogout} icon={<ExitIcon />}>Выйти</Nav.Item>
                 </Nav>
             </Navbar>
         </Header>
