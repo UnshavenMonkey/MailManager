@@ -5,7 +5,7 @@ import style from './AppFooter.module.scss';
 export function AppFooter() {
     return (
         <Footer className={style.footer}>
-            footer
+            <span className={style.rightText}>&copy; {new Date().getFullYear()} made by Aleksandr Dudkov</span>
         </Footer>
     );
 }

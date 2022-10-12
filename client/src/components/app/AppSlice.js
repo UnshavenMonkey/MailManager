@@ -29,5 +29,5 @@ export const appReducer = appSlice.reducer;
 
 export const { cleanupApp } = appSlice.actions;
 
-export const selectUser = (state) => state.app.user;
+export const selectUser = (state) => state.app.user?.user;
 
