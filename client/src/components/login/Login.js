@@ -50,7 +50,7 @@ export function Login() {
             </Form.Group>
             <Form.Group>
                 <ButtonToolbar>
-                    <Button appearance="primary" type="submit">Submit</Button>
+                    <Button appearance="primary" type="submit">Войти</Button>
                 </ButtonToolbar>
             </Form.Group>
         </Form>
