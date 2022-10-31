@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, ButtonToolbar, Form, InputGroup} from "rsuite";
+import {Button, ButtonToolbar, Container, Form, InputGroup} from "rsuite";
 import {useDispatch, useSelector} from "react-redux";
 import {
     cleanupRegistrationForm,
@@ -48,35 +48,38 @@ export function RegistrationForm() {
     };
 
     return (
-        <Form className={style.registrationForm} onSubmit={handleSubmit}>
-            <Form.Group controlId="firstname">
-                <Form.ControlLabel>Firstname</Form.ControlLabel>
-                <Form.Control name="firstname" onChange={(e) => dispatch(setFirstname(e))} />
-            </Form.Group>
-            <Form.Group controlId="lastname">
-                <Form.ControlLabel>Lastname</Form.ControlLabel>
-                <Form.Control name="lastname" onChange={(e) => dispatch(setLastname(e))} />
-            </Form.Group>
-            <Form.Group controlId="email">
-                <Form.ControlLabel>Email</Form.ControlLabel>
-                <Form.Control name="email" type="email" onChange={(e) => dispatch(setEmail(e))} />
-                <Form.HelpText>Email is required</Form.HelpText>
-            </Form.Group>
-            <Form.Group controlId="password">
-                <Form.ControlLabel>Password</Form.ControlLabel>
-                <InputGroup inside>
-                    <Form.Control name="password" type={visible ? 'text' : 'password'} autoComplete="off" onChange={(e) => dispatch(setPassword(e))} />
-                    <InputGroup.Button onClick={handleChangeVisible}>
-                        {visible ? <EyeIcon /> : <EyeSlashIcon />}
-                    </InputGroup.Button>
-                </InputGroup>
-            </Form.Group>
-            <Form.Group>
-                <ButtonToolbar>
-                    <Button appearance="primary" type="submit">Зарегистрироаться</Button>
-                    <Button appearance="default">Отмена</Button>
-                </ButtonToolbar>
-            </Form.Group>
-        </Form>
+        <Container >
+            <Form className='mx-auto w-50' onSubmit={handleSubmit}>
+                <div className='my-3 text-center'>Регистрация</div>
+                <Form.Group controlId="firstname">
+                    <Form.ControlLabel>Firstname</Form.ControlLabel>
+                    <Form.Control name="firstname" onChange={(e) => dispatch(setFirstname(e))} />
+                </Form.Group>
+                <Form.Group controlId="lastname">
+                    <Form.ControlLabel>Lastname</Form.ControlLabel>
+                    <Form.Control name="lastname" onChange={(e) => dispatch(setLastname(e))} />
+                </Form.Group>
+                <Form.Group controlId="email">
+                    <Form.ControlLabel>Email</Form.ControlLabel>
+                    <Form.Control name="email" type="email" onChange={(e) => dispatch(setEmail(e))} />
+                    <Form.HelpText>Email is required</Form.HelpText>
+                </Form.Group>
+                <Form.Group controlId="password">
+                    <Form.ControlLabel>Password</Form.ControlLabel>
+                    <InputGroup inside>
+                        <Form.Control name="password" type={visible ? 'text' : 'password'} autoComplete="off" onChange={(e) => dispatch(setPassword(e))} />
+                        <InputGroup.Button onClick={handleChangeVisible}>
+                            {visible ? <EyeIcon /> : <EyeSlashIcon />}
+                        </InputGroup.Button>
+                    </InputGroup>
+                </Form.Group>
+                <Form.Group>
+                    <ButtonToolbar>
+                        <Button appearance="primary" type="submit">Зарегистрироаться</Button>
+                        <Button appearance="default">Отмена</Button>
+                    </ButtonToolbar>
+                </Form.Group>
+            </Form>
+        </Container>
     );
 }

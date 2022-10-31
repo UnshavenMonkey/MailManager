@@ -6,17 +6,19 @@ import {AppFooter} from "../app-footer/AppFooter";
 import '../../styles.css';
 import style from './App.module.scss';
 import {useRedirectIfUnauthorized} from "../../hooks/RedirectIfUnauthorized";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {PATHS} from "../const/route-path";
-import {cleanupApp, getCurrentUser} from "./AppSlice";
+import {cleanupApp, getCurrentUser, getMailList, selectMailList} from "./AppSlice";
 import {Navigate} from "react-router-dom";
 
 export function App() {
     const dispatch = useDispatch();
     const redirect = useRedirectIfUnauthorized();
+    const mailList = useSelector(selectMailList);
 
     useLayoutEffect(() => {
         dispatch(getCurrentUser());
+        dispatch(getMailList());
         return function cleanup() {
             dispatch(cleanupApp());
         };
@@ -28,6 +30,8 @@ export function App() {
     } else if (redirect === null) {
         return null;
     }
+
+    console.log(mailList);
 
     return (
         <Container className={style.appContainer}>

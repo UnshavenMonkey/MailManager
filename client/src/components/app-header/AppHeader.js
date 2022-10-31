@@ -17,8 +17,6 @@ export function AppHeader() {
         dispatch(getCurrentUser());
     };
 
-    console.log(user.email);
-
     return (
         <Header>
             <Navbar appearance="inverse">

@@ -29,6 +29,7 @@ const Mail = sequelize.define('mail', {
     address: {type: DataTypes.STRING},
     file: {type: DataTypes.STRING},
     responsiblePerson: {type: DataTypes.STRING},
+    isPerson: {type: DataTypes.BOOLEAN},
 })
 
 

@@ -35,6 +35,7 @@ export function Login() {
 
     return (
         <Form onSubmit={handleSubmit} className={style.loginForm} >
+            <div className='my-3 text-center'>Вход</div>
             <Form.Group controlId="email">
                 <Form.ControlLabel>Email</Form.ControlLabel>
                 <Form.Control name="email" type="email" onChange={(e) => dispatch(setEmail(e))} />

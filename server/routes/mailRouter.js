@@ -1,8 +1,9 @@
 const Router = require('express');
 const router = new Router();
+const mailController = require('../controllers/mailController');
 
 router.post('/');
-router.get('/');
+router.get('/maillist', mailController.getAllMail);
 router.get('/:id');
 
 module.exports = router;
