@@ -1,10 +1,9 @@
 import React from 'react';
-import {Header, Nav, Navbar} from "rsuite";
-import HomeIcon from '@rsuite/icons/legacy/Home';
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "./AppHeaderSlice";
 import {getCurrentUser, selectUser} from "../app/AppSlice";
 import ExitIcon from '@rsuite/icons/Exit';
+import {Container, Nav, Navbar} from "react-bootstrap";
 
 
 export function AppHeader() {
@@ -18,19 +17,20 @@ export function AppHeader() {
     };
 
     return (
-        <Header>
-            <Navbar appearance="inverse">
+        <Navbar bg="primary" variant="dark">
+            <Container>
+                <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+                <Nav className="me-auto">
+                    <Nav.Link href="#home">Главная</Nav.Link>
+                    <Nav.Link href="#features">Пользователи</Nav.Link>
+                    <Nav.Link href="#pricing">Корреспонденция</Nav.Link>
+                </Nav>
                 <Nav>
-                    <Nav.Item icon={<HomeIcon />}>Главная</Nav.Item>
-                    <Nav.Item>Пользователи</Nav.Item>
-                    <Nav.Item>Корреспонденция</Nav.Item>
+                    <Nav.Link href="#home">{user.email}</Nav.Link>
+                    <Nav.Link onClick={handleLogout} icon={<ExitIcon />}>Выйти</Nav.Link>
                 </Nav>
-                <Nav pullRight>
-                    <Nav.Item>{user.email}</Nav.Item>
-                    <Nav.Item onClick={handleLogout} icon={<ExitIcon />}>Выйти</Nav.Item>
-                </Nav>
-            </Navbar>
-        </Header>
+            </Container>
+        </Navbar>
     );
 }
 

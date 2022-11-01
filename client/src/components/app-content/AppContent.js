@@ -15,7 +15,7 @@ export function AppContent() {
 
 
     return (
-        <div>
+        <div className="container">
            hello
         </div>
     );
