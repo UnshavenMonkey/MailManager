@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {Button, ButtonToolbar, Container, Form, InputGroup} from "rsuite";
 import {useDispatch, useSelector} from "react-redux";
 import {
     cleanupRegistrationForm,
@@ -9,11 +8,9 @@ import {
     selectLastname,
     selectPassword, setFirstname, setLastname, setEmail, setPassword, selectStatus
 } from "./RegistrationFormSlice";
-import style from './RegistrationForm.module.scss'
 import {Navigate} from "react-router-dom";
 import {PATHS} from "../const/route-path";
-import EyeIcon from "@rsuite/icons/legacy/Eye";
-import EyeSlashIcon from "@rsuite/icons/legacy/EyeSlash";
+import {Button, Form} from 'react-bootstrap';
 
 
 
@@ -34,7 +31,8 @@ export function RegistrationForm() {
     }, [dispatch]);
 
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
         dispatch(registrationUser({
             firstname, lastname, email, password}));
     };
@@ -48,38 +46,30 @@ export function RegistrationForm() {
     };
 
     return (
-        <Container >
-            <Form className='mx-auto w-50' onSubmit={handleSubmit}>
+            <Form className="w-50 mx-auto mt-5" onSubmit={(e) => handleSubmit(e)}>
                 <div className='my-3 text-center'>Регистрация</div>
-                <Form.Group controlId="firstname">
-                    <Form.ControlLabel>Firstname</Form.ControlLabel>
-                    <Form.Control name="firstname" onChange={(e) => dispatch(setFirstname(e))} />
+                <Form.Group className="mb-3" controlId="firstname">
+                    <Form.Label>Firstname</Form.Label>
+                    <Form.Control type="text" placeholder="Enter firstname" name="firstname" onChange={(e) => dispatch(setFirstname(e.target.value))} />
                 </Form.Group>
-                <Form.Group controlId="lastname">
-                    <Form.ControlLabel>Lastname</Form.ControlLabel>
-                    <Form.Control name="lastname" onChange={(e) => dispatch(setLastname(e))} />
+                <Form.Group className="mb-3" controlId="lastname">
+                    <Form.Label>Lastname</Form.Label>
+                    <Form.Control type="text" placeholder="Enter lastname" name="lastname" onChange={(e) => dispatch(setLastname(e.target.value))}/>
                 </Form.Group>
-                <Form.Group controlId="email">
-                    <Form.ControlLabel>Email</Form.ControlLabel>
-                    <Form.Control name="email" type="email" onChange={(e) => dispatch(setEmail(e))} />
-                    <Form.HelpText>Email is required</Form.HelpText>
+                <Form.Group className="mb-3" controlId="email">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="email" placeholder="Enter email" name="email" onChange={(e) => dispatch(setEmail(e.target.value))} />
                 </Form.Group>
-                <Form.Group controlId="password">
-                    <Form.ControlLabel>Password</Form.ControlLabel>
-                    <InputGroup inside>
-                        <Form.Control name="password" type={visible ? 'text' : 'password'} autoComplete="off" onChange={(e) => dispatch(setPassword(e))} />
-                        <InputGroup.Button onClick={handleChangeVisible}>
-                            {visible ? <EyeIcon /> : <EyeSlashIcon />}
-                        </InputGroup.Button>
-                    </InputGroup>
+                <Form.Group className="mb-3" controlId="password">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control placeholder="Password" name="password" type={visible ? 'text' : 'password'} autoComplete="off" onChange={(e) => dispatch(setPassword(e.target.value))} />
+                    {/*<InputGroup.Button onClick={handleChangeVisible}>*/}
+                    {/*    {visible ? <EyeIcon /> : <EyeSlashIcon />}*/}
+                    {/*</InputGroup.Button>*/}
                 </Form.Group>
-                <Form.Group>
-                    <ButtonToolbar>
-                        <Button appearance="primary" type="submit">Зарегистрироаться</Button>
-                        <Button appearance="default">Отмена</Button>
-                    </ButtonToolbar>
-                </Form.Group>
+                <Button variant="primary" type="submit">
+                    Зарегистрироаться
+                </Button>
             </Form>
-        </Container>
     );
 }

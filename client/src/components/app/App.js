@@ -1,5 +1,4 @@
 import React, {useLayoutEffect} from "react";
-import {Container} from "rsuite";
 import {AppContent} from "../app-content/AppContent";
 import {AppHeader} from "../app-header/AppHeader";
 import {AppFooter} from "../app-footer/AppFooter";
@@ -10,6 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {PATHS} from "../const/route-path";
 import {cleanupApp, getCurrentUser, getMailList, selectMailList} from "./AppSlice";
 import {Navigate} from "react-router-dom";
+import classNames from "classnames";
 
 export function App() {
     const dispatch = useDispatch();
@@ -34,11 +34,11 @@ export function App() {
     console.log(mailList);
 
     return (
-        <Container className={style.appContainer}>
+        <div className={classNames('container-lg', style.appContainer)}>
             <AppHeader />
             <AppContent />
             <AppFooter />
-        </Container>
+        </div>
     );
 };
 

@@ -1,18 +1,24 @@
 const sequelize = require('../db');
-const {Mail} = require('../models/models');
+const {Mail, User} = require('../models/models');
 const ApiError = require("../error/ApiError");
+const bcrypt = require("bcrypt");
+const {DataTypes} = require("sequelize");
 
 
 class MailController {
     async getAllMail(req, res, next) {
-        try {
-            const mailList = await Mail.findAll();
-        } catch (e) {
-            console.log('ошибка', e)
+       const maillist = await Mail.findAll();
+        if (!maillist) {
+            return next(ApiError.internal('Пользователь с таким именем не найден'));
         }
-        // console.log(mailList)
+       console.log(maillist);
 
-        return res.json({'q': 1});
+        return res.json({maillist});
+    }
+    async addMail(req, res, next) {
+        const {dateToComplete, dateComplete, author, address, file, responsiblePerson, isPerson} = req.body
+        const mail = await Mail.create({dateToComplete, dateComplete, author, address, file, responsiblePerson, isPerson });
+        return res.json({mail});
     }
 }
 

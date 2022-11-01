@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import {Button, ButtonToolbar, Content, Form} from 'rsuite';
-import style from './AppContent.module.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {getAuthStatus, selectError, selectIsAuth, selectStatus} from "./AppContentSlice";
 
@@ -17,9 +15,9 @@ export function AppContent() {
 
 
     return (
-        <Content className={style.appContent}>
+        <div>
            hello
-        </Content>
+        </div>
     );
 }
 
