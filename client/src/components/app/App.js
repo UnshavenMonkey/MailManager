@@ -34,7 +34,7 @@ export function App() {
     console.log(mailList);
 
     return (
-        <div className={classNames('container-lg d-flex flex-column', style.appContainer)}>
+        <div className={classNames('d-flex flex-column min-vh-100')}>
             <AppHeader />
             <AppContent />
             <AppFooter />

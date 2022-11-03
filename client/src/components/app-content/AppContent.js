@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {getAuthStatus, selectError, selectIsAuth, selectStatus} from "./AppContentSlice";
+import classNames from "classnames";
+import style from './AppContent.module.scss';
 
 
 export function AppContent() {
@@ -15,8 +17,10 @@ export function AppContent() {
 
 
     return (
-        <div className="container">
-           hello
+        <div className={classNames("flex-shrink-0", style.appContent)}>
+            <div className={classNames("container")}>
+                hello
+            </div>
         </div>
     );
 }
