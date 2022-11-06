@@ -23,7 +23,7 @@ export function AppHeader() {
             <Container>
                 <Navbar.Brand className="text-decoration-none" href="#home">MailManager</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link href="#home">Главная</Nav.Link>
+                    <Nav.Link as={Link} to={PATHS.INDEX}>Главная</Nav.Link>
                     <Nav.Link href="#features">Пользователи</Nav.Link>
                     <Nav.Link as={Link} to={PATHS.MAIL}>Корреспонденция</Nav.Link>
                 </Nav>

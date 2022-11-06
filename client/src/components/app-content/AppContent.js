@@ -11,9 +11,7 @@ export function AppContent() {
     return (
         <div className={classNames("flex-shrink-0", style.appContent)}>
             <div className={classNames("container")}>
-                {/*<Navigate from={PATHS.BASENAME} to={PATHS.MAIL} />*/}
-
-
+                container
             </div>
         </div>
     );
