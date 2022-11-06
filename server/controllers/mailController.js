@@ -11,12 +11,12 @@ class MailController {
         if (!maillist) {
             return next(ApiError.internal('Пользователь с таким именем не найден'));
         }
-       console.log(maillist);
 
         return res.json({maillist});
     }
     async addMail(req, res, next) {
         const {dateToComplete, dateComplete, author, address, file, responsiblePerson, isPerson} = req.body
+        console.log(req.body);
         const mail = await Mail.create({dateToComplete, dateComplete, author, address, file, responsiblePerson, isPerson });
         return res.json({mail});
     }

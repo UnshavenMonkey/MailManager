@@ -15,6 +15,8 @@ export function App() {
     const redirect = useRedirectIfUnauthorized();
     const mailList = useSelector(selectMailList);
 
+    console.log(mailList);
+
     useLayoutEffect(() => {
         dispatch(getCurrentUser());
         dispatch(getMailList());

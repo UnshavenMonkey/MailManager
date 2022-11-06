@@ -3,7 +3,7 @@ import classNames from "classnames";
 import style from './AppContent.module.scss';
 import {Route, Routes, Navigate, Redirect} from "react-router-dom";
 import {PATHS} from "../const/route-path";
-import {Mail} from "../Mail";
+import {Mail} from "../mail/Mail";
 
 
 export function AppContent() {

@@ -5,7 +5,7 @@ import {PATHS} from "../const/route-path";
 import {Login} from "../login/Login";
 import {App} from "../app/App";
 import {RegistrationForm} from "../registration-form/RegistrationForm";
-import {Mail} from "../Mail";
+import {Mail} from "../mail/Mail";
 import {Dashboard} from "../Dashboard";
 
 export function Root() {
